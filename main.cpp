@@ -84,7 +84,13 @@ void push(struct _generatorData* data, mpz_t val)
 
 void getLastN(mpz_t result, int n, struct _generatorData* data)
 {
-    int index = (data->last - n) % data->elementsNumber;
+    int index = (data->last - n);
+    while(index <0) {
+        index = data->elementsNumber + index;
+    }
+
+    index = index % data->elementsNumber;
+
     mpz_set(result, data->elements[index]);
 }
 
